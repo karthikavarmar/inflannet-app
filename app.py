@@ -5,6 +5,13 @@ import importlib.util
 import pickle
 #import pandas as py
 
+def load_ml_model(module_path):
+    # Load the ml_model module from the specified path
+    spec = importlib.util.spec_from_file_location("ml_model", module_path)
+    ml_model = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(ml_model)
+    return ml_model
+
 def main():
     st.title("Flu Epitope Prediction Tool")
 
