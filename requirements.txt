@@ -1,5 +1,6 @@
 streamlit
 keras  # Or tensorflow, depending on your Keras version
+tensorflow==2.17.1
 scikit-learn
 pandas
 matplotlib
