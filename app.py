@@ -6,7 +6,7 @@ import pickle
 #import pandas as py
 
 def main():
-    st.title("Epitope Prediction Tool")
+    st.title("Flu Epitope Prediction Tool")
 
     # Load the trained model
     lmodel = load_model('tool_model_keras_9mer.h5')
