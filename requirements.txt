@@ -1,0 +1,7 @@
+streamlit
+keras  # Or tensorflow, depending on your Keras version
+scikit-learn
+pandas
+matplotlib
+pyngrok
+scikeras
