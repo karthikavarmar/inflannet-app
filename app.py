@@ -14,23 +14,34 @@ def load_ml_model(module_path):
 
 def main():
     st.title("Flu Epitope Prediction Tool")
+    st.image("virus-image.jpg", width=150)
 
     # Load the trained model
-    lmodel = load_model('tool_model_keras_9mer.h5')
+    lmodel_9mer = load_model('tool_model_keras_9mer.h5')
+    lmodel_6mer = load_model('tool_model_keras_6mer.h5')  # Replace with your model filename
 
-    # Load the ml_model code if it's a Python file
+    # Load the ml_model code as it's a Python file
     ml_model_path = "ml_functions.py"  # Replace with the actual path
     ml_model = load_ml_model(ml_model_path)
 
-    # User input for the epitope string
+    # User input for the HTL(9-mer) epitope string
     input_string = st.text_input("Enter a 9 letter epitope string:")
-
-    if st.button("Predict"):
+    if st.button("Predict HTL score"):
         if input_string:
-            prediction = ml_model.predict_epitope(lmodel, input_string)
-            st.write(f"Prediction: {prediction}")
+            prediction = ml_model.predict_epitope(lmodel_9mer, input_string)
+            st.write(f"Prediction Score: {prediction}")
+        else:
+            st.write("Please enter an epitope string.")
+
+    # User input for the CTL(6-mer) epitope string
+    input_string = st.text_input("Enter a 6 letter epitope string:")   
+    if st.button("Predict CTL score"):
+        if input_string:
+            prediction = ml_model.predict_epitope(lmodel_6mer, input_string)
+            st.write(f"Prediction Score: {prediction}")
         else:
             st.write("Please enter an epitope string.")
 
 if __name__ == '__main__':
     main()
+
