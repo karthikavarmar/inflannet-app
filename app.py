@@ -3,7 +3,6 @@ from keras.models import load_model
 import sys, os
 import importlib.util
 import pickle
-#import pandas as py
 
 def load_ml_model(module_path):
     # Load the ml_model module from the specified path
@@ -13,12 +12,13 @@ def load_ml_model(module_path):
     return ml_model
 
 def main():
-    st.title("Flu Epitope Prediction Tool")
+    st.title("Influenza Epitope Prediction Tool")
+    st.text("Please cite this paper [InflANNet: https://doi.org/10.1186/s42269-023-01101-1]")
     st.image("virus-image.jpg", width=150)
 
     # Load the trained model
     lmodel_9mer = load_model('tool_model_keras_9mer.h5')
-    lmodel_6mer = load_model('tool_model_keras_6mer.h5')  # Replace with your model filename
+    lmodel_15mer = load_model('tool_model_keras_15mer.h5')  # Replace with your model filename
 
     # Load the ml_model code as it's a Python file
     ml_model_path = "ml_functions.py"  # Replace with the actual path
@@ -26,7 +26,7 @@ def main():
 
     # User input for the HTL(9-mer) epitope string
     input_string = st.text_input("Enter a 9 letter epitope string:")
-    if st.button("Predict HTL score"):
+    if st.button("Predict CTL score"):
         if input_string:
             prediction = ml_model.predict_epitope(lmodel_9mer, input_string)
             st.write(f"Prediction Score: {prediction}")
@@ -34,10 +34,10 @@ def main():
             st.write("Please enter an epitope string.")
 
     # User input for the CTL(6-mer) epitope string
-    input_string = st.text_input("Enter a 6 letter epitope string:")   
-    if st.button("Predict CTL score"):
+    input_string = st.text_input("Enter a 15 letter epitope string:")   
+    if st.button("Predict HTL score"):
         if input_string:
-            prediction = ml_model.predict_epitope(lmodel_6mer, input_string)
+            prediction = ml_model.predict_epitope(lmodel_15mer, input_string)
             st.write(f"Prediction Score: {prediction}")
         else:
             st.write("Please enter an epitope string.")
