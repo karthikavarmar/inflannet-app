@@ -13,7 +13,7 @@ def load_ml_model(module_path):
 
 def main():
     st.title("Influenza Epitope Prediction Tool")
-    st.text("Please cite this paper [InflANNet: https://doi.org/10.1186/s42269-023-01101-1]")
+    st.text("Please cite this paper InflANNet: https://doi.org/10.1186/s42269-023-01101-1")
     st.image("virus-image.jpg", width=150)
 
     # Load the trained model
